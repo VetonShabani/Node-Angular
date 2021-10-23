@@ -1,0 +1,71 @@
+
+<div *ngIf="!totalDomestic">
+<h1>there was a problem with getting data</h1>
+</div>
+
+
+
+<div *ngFor="let items of totalDomesticItems ; let i = index">
+
+  <div *ngIf="items.domestic" >
+    <span class="title">
+
+      <h3  [ngClass]="firstTitle == i ? 'active' : ''" >Domestic</h3>    
+    </span>
+    <p>Name : {{items.name}}</p>
+
+    <p>Price : {{items.price}}$</p>
+    <p>
+      {{ (items.description.length>10) ? (items.description | slice: 0:10)+'...':(items.description) }}
+    </p>
+
+    <div *ngIf="items.weight">
+      <p>weight : {{items.weight}}g</p>
+    </div>
+
+    <div *ngIf="!items.weight">
+      <p>weight : N/A</p>
+    </div>
+
+
+  </div>
+</div>
+
+<br>
+<div *ngFor="let items of totalImportedItems" >
+  <span class="title">
+
+    <h3  [ngClass]="firstTitle == 0 ? 'active' : ''" >Imported</h3>
+  </span>
+    <p>Name : {{items.name}}</p>
+
+    <p>Price : ${{items.price}}</p>
+    
+        <p>
+          {{ (items.description.length>10) ? (items.description | slice: 0:10)+'...':(items.description) }}
+        </p>
+
+    <div *ngIf="items.weight">
+      <p>weight : {{items.weight}}g</p>
+    </div>
+
+    <div *ngIf="!items.weight">
+      <p>weight : N/A</p>
+    </div>
+
+
+  <br>
+</div>
+<br>
+<p>
+  Total Domestic Price : {{totalDomestic}}$
+</p>
+<p>
+  Total Imported Price : {{totalImported}}$
+</p>
+<p>
+  Total Domestic Items : {{totalDomesticItems.length}}
+</p>
+<p>
+  Total Imported Items : {{totalImportedItems.length}}
+</p>
